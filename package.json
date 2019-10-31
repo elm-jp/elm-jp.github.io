@@ -2,7 +2,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "watch:js": "cpx -w src/main.js dist",
-    "watch:elm": "elm-live src/Main.elm --open --start-page=index.html --pushstate -- --output=dist/elm.js",
+    "watch:elm": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
     "watch:sass": "sass --watch src:dist",
     "watch": "npm-run-all -p watch:*",
     "prewatch": "sass src:dist",
