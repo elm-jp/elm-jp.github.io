@@ -1,6 +1,6 @@
 module Page.Top exposing (view)
 
-import Html exposing (Html, a, div, img, text)
+import Html exposing (Html, a, div, footer, img, p, text)
 import Html.Attributes exposing (class, href, rel, src, target)
 
 
@@ -29,4 +29,14 @@ view =
         [ a [ class "twitter-moment", href "https://twitter.com/i/moments/1088056396665352192?ref_src=twsrc%5Etfw" ]
             [ text "さくらちゃん日記" ]
         ]
+    , siteFooter
     ]
+
+
+siteFooter : Html msg
+siteFooter =
+    footer [ class "footer" ]
+        [ div [ class "has-text-centered" ]
+            [ p [] [ text "© 2019 Elm-jp" ]
+            ]
+        ]
