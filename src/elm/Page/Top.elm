@@ -1,7 +1,7 @@
 module Page.Top exposing (view)
 
-import Html exposing (Html, a, div, footer, img, li, main_, p, section, text, ul)
-import Html.Attributes exposing (class, href, rel, src, target)
+import Html exposing (Html, a, div, footer, h1, header, img, main_, nav, p, section, span, text)
+import Html.Attributes exposing (class, href, id, rel, src, target)
 
 
 
@@ -10,7 +10,8 @@ import Html.Attributes exposing (class, href, rel, src, target)
 
 view : List (Html msg)
 view =
-    [ main_ []
+    [ siteHeader
+    , main_ []
         [ section [ class "section" ]
             [ div [ class "content" ]
                 [ img [ src "img/sakura.jpg" ] []
@@ -30,7 +31,7 @@ view =
                     ]
                 ]
             ]
-        , section [ class "section" ]
+        , section [ id "sakura", class "section" ]
             [ div [ class "moment" ]
                 [ a [ class "twitter-moment", href "https://twitter.com/i/moments/1088056396665352192?ref_src=twsrc%5Etfw" ]
                     [ text "さくらちゃん日記" ]
@@ -39,6 +40,20 @@ view =
         ]
     , siteFooter
     ]
+
+
+siteHeader : Html msg
+siteHeader =
+    header [ class "navbar is-spaced is-light" ]
+        [ h1 [ class "navbar-brand" ]
+            [ a [ class "navbar-item", href "/" ]
+                [ span [ class "has-text-weight-bold" ] [ text "Elm-jp" ]
+                ]
+            ]
+        , nav [ class "navbar-menu navbar-end" ]
+            [ a [ class "navbar-item", href "#sakura" ] [ text "さくらちゃん日記" ]
+            ]
+        ]
 
 
 siteFooter : Html msg
