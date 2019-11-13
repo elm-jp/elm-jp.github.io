@@ -2,12 +2,12 @@
   "scripts": {
     "clean": "rimraf dist",
     "watch:js": "cpx -w src/main.js dist",
-    "watch:elm": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
+    "watch:elm": "elm-live src/elm/Main.elm --open -- --debug --output=dist/elm.js",
     "watch:sass": "sass --watch src:dist",
     "watch": "npm-run-all -p watch:*",
     "prewatch": "sass src:dist",
     "compile:js": "cpx src/main.js dist",
-    "compile:elm": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
+    "compile:elm": "elm make src/elm/Main.elm --optimize --output=dist/elm.optimized.js",
     "compile:sass": "sass --style=compressed --no-source-map src:dist",
     "compile": "npm-run-all -p compile:*",
     "minify:elm": "google-closure-compiler --js=dist/elm.optimized.js --js_output_file=dist/elm.js",
@@ -16,6 +16,7 @@
     "start": "npm-run-all -s clean watch"
   },
   "devDependencies": {
+    "bulma": "^0.8.0",
     "cpx": "^1.5.0",
     "elm": "^0.19.1-3",
     "elm-format": "^0.8.2",
