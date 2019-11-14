@@ -25,7 +25,7 @@ jobs:
     - name: cache for elm
       uses: actions/cache@v1
       with:
-        path: elm-stuff
+        path: ~/.elm
         key: ${{ runner.os }}-elm-${{ hashFiles('**/elm.json') }}
         restore-keys: |
           ${{ runner.os }}-elm-
