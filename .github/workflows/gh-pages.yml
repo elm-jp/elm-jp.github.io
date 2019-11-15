@@ -32,7 +32,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: npm install
+    - run: npm ci
     - run: npm run-script build
     - name: deploy
       if: github.ref == 'refs/heads/master'
