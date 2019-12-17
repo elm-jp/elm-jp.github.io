@@ -1,0 +1,48 @@
+name: GitHub Pages
+
+on:
+  pull_request: null
+  push:
+    branches:
+    - master
+    paths-ignore:
+    - "dist/**"
+
+jobs:
+  build:
+    runs-on: [ubuntu-18.04]
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: cache for node
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: cache for elm
+      uses: actions/cache@v1
+      with:
+        path: ~/.elm
+        key: ${{ runner.os }}-elm-${{ hashFiles('**/elm.json') }}
+        restore-keys: |
+          ${{ runner.os }}-elm-
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: npm ci
+    - run: npm run-script build
+    - name: deploy
+      if: github.ref == 'refs/heads/master'
+      uses: docker://buildpack-deps:18.04-scm
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        GIT_NAME: Bot
+        GIT_EMAIL: example@example.com
+        TARGET_BRANCH: master
+        TARGET_PATH: dist
+      with:
+        entrypoint: /bin/bash
+        args: .github/scripts/deploy.bash
