@@ -47,9 +47,7 @@ Run every `watch:*` at the same time.
 
 ```
 "watch:elm": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
-"watch:sass": "sass --watch src:dist",
 "watch": "npm-run-all -p watch:*",
-"prewatch": "sass src:dist",
 ```
 
 
@@ -67,7 +65,6 @@ Run every `compile:*` at the same time.
 
 ```
 "compile:elm": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
-"compile:sass": "sass --style=compressed --no-source-map src:dist",
 "compile": "npm-run-all -p compile:*",
 ```
 
