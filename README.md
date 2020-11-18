@@ -46,7 +46,6 @@ Remove `dist` directory.
 Run every `watch:*` at the same time.
 
 ```
-"watch:js": "cpx -w src/main.js dist",
 "watch:elm": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
 "watch:sass": "sass --watch src:dist",
 "watch": "npm-run-all -p watch:*",
@@ -67,7 +66,6 @@ Run `clean`, `compile` and `minify:elm` sequentially.
 Run every `compile:*` at the same time.
 
 ```
-"compile:js": "cpx src/main.js dist",
 "compile:elm": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
 "compile:sass": "sass --style=compressed --no-source-map src:dist",
 "compile": "npm-run-all -p compile:*",
