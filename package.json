@@ -1,7 +1,7 @@
 {
   "scripts": {
     "clean": "rimraf dist/elm.js",
-    "watch": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
+    "watch": "elm-live src/Main.elm --open --pushstate -- --debug --output=dist/elm.js",
     "compile": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
     "minify": "google-closure-compiler --js=dist/elm.optimized.js --js_output_file=dist/elm.js",
     "postminify": "rimraf dist/elm.optimized.js",
