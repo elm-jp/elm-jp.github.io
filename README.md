@@ -18,7 +18,7 @@ package.json has some scripts:
 - `clean`
 - `watch`
 - `compile`
-- `minify:elm`
+- `minify`
 - `build`
 - `start`
 
@@ -35,44 +35,42 @@ Run `clean` and `watch` sequentially.
 
 ### clean
 
-Remove `dist` directory.
+Remove `elm.js`.
 
 ```
-"clean": "rimraf dist"
+"clean": "rimraf dist/elm.js"
 ```
 
 ### watch
 
-Run every `watch:*` at the same time.
+Run `elm-live`.
 
 ```
-"watch:elm": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
-"watch": "npm-run-all -p watch:*",
+"watch": "elm-live src/Main.elm --open -- --debug --output=dist/elm.js",
 ```
 
 
 ## npm run build
 
-Run `clean`, `compile` and `minify:elm` sequentially.
+Run `clean`, `compile` and `minify` sequentially.
 
 ```
-"build": "npm-run-all -s clean compile minify:elm"
+"build": "npm-run-all -s clean compile minify"
 ```
 
 ### compile
 
-Run every `compile:*` at the same time.
+Run `elm make`.
 
 ```
-"compile:elm": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
-"compile": "npm-run-all -p compile:*",
+"compile": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
 ```
 
-### minify:elm
+### minify
 
 Minify elm.optimized.js to elm.js
 
 ```
-"minify:elm": "google-closure-compiler --js=dist/elm.optimized.js --js_output_file=dist/elm.js",
-"postminify:elm": "rimraf dist/elm.optimized.js",
+"minify": "google-closure-compiler --js=dist/elm.optimized.js --js_output_file=dist/elm.js",
+"postminify": "rimraf dist/elm.optimized.js",
 ```
