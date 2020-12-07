@@ -4,6 +4,7 @@ import Browser
 import Html exposing (Html)
 import Json.Decode exposing (Decoder, decodeString)
 import Siteelm.Html as Html
+import Siteelm.Html.Ogp as Ogp
 
 
 {-| Generate a Program for static page. You need to give a decoder for your
@@ -59,7 +60,7 @@ renderPage head body model =
     case model.preamble of
         Just p ->
             Html.html []
-                [ Html.head [] <| head p model.body
+                [ Html.head [ Ogp.prefix "og: http://ogp.me/ns#" ] <| head p model.body
                 , Html.body [] <| body p model.body
                 ]
 
