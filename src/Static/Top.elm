@@ -2,7 +2,6 @@ module Static.Top exposing (main)
 
 import Html exposing (Html, a, div, img, main_, node, p, section, text)
 import Html.Attributes exposing (attribute, class, href, id, name, src, target)
-import Json.Decode as D exposing (Decoder)
 import Siteelm.Html exposing (link, meta, title)
 import Siteelm.Html.Attributes as Attributes exposing (charset, content, rel)
 import Siteelm.Html.Attributes.Extra exposing (httpEquiv)
@@ -11,33 +10,15 @@ import Siteelm.Page exposing (Page, page)
 import Static.View as View
 
 
-main : Page Preamble
+main : Page
 main =
-    page
-        { decoder = preambleDecoder
-        , head = viewHead
-        , body = viewBody
-        }
-
-
-{-| Preamble is what you write on the head of the content files.
--}
-type alias Preamble =
-    { title : String }
-
-
-{-| Preamble is passed as a JSON string. So it requires a decoder.
--}
-preambleDecoder : Decoder Preamble
-preambleDecoder =
-    D.map Preamble
-        (D.field "title" D.string)
+    page { head = viewHead, body = viewBody }
 
 
 {-| Make contents inside the _head_ tag.
 -}
-viewHead : Preamble -> String -> List (Html Never)
-viewHead _ _ =
+viewHead : List (Html Never)
+viewHead =
     let
         siteName =
             "Elm-jp"
@@ -91,8 +72,8 @@ gtag('config', 'UA-134256281-1');
 
 {-| Make contents inside the _body_ tag. The parameter "body" is usually something like markdown.
 -}
-viewBody : Preamble -> String -> List (Html Never)
-viewBody _ _ =
+viewBody : List (Html Never)
+viewBody =
     [ View.siteHeader
     , main_ []
         [ section [ class "section" ]

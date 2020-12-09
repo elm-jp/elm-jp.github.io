@@ -2,68 +2,30 @@ module Siteelm.Page exposing (Page, page)
 
 import Browser
 import Html exposing (Html)
-import Json.Decode exposing (Decoder, decodeString)
 import Siteelm.Html as Html
 import Siteelm.Html.Attributes.Extra as Html
 import Siteelm.Html.Ogp as Ogp
 
 
-{-| Generate a Program for static page. You need to give a decoder for your
-preamble model and a view function which takes the preamble and
-plain text body (e.g. markdown text).
+{-| Generate a Program for static page.
 -}
-page :
-    { decoder : Decoder a
-    , head : a -> String -> List (Html Never)
-    , body : a -> String -> List (Html Never)
-    }
-    -> Page a
-page { decoder, head, body } =
+page : { head : List (Html Never), body : List (Html Never) } -> Page
+page { head, body } =
     Browser.document
-        { init = \f -> ( decode decoder f, Cmd.none )
-        , update = \_ m -> ( m, Cmd.none )
-        , view = \m -> { title = "", body = [ renderPage head body m ] }
+        { init = \() -> ( (), Cmd.none )
+        , update = \_ () -> ( (), Cmd.none )
+        , view = \() -> { title = "", body = [ renderPage head body ] }
         , subscriptions = always Sub.none
         }
 
 
-type alias Page a =
-    Program Flags (Model a) Never
+type alias Page =
+    Program () () Never
 
 
-type alias Model a =
-    { preamble : Maybe a
-    , body : String
-    }
-
-
-type alias Flags =
-    { preamble : String
-    , body : String
-    }
-
-
-decode : Decoder a -> Flags -> Model a
-decode decoder flags =
-    let
-        preamble =
-            flags.preamble
-                |> decodeString decoder
-                |> Result.toMaybe
-    in
-    { preamble = preamble
-    , body = flags.body
-    }
-
-
-renderPage : (a -> String -> List (Html Never)) -> (a -> String -> List (Html Never)) -> Model a -> Html Never
-renderPage head body model =
-    case model.preamble of
-        Just p ->
-            Html.html [ Html.lang "ja" ]
-                [ Html.head [ Ogp.prefix "og: http://ogp.me/ns#" ] <| head p model.body
-                , Html.body [] <| body p model.body
-                ]
-
-        Nothing ->
-            Html.text ""
+renderPage : List (Html Never) -> List (Html Never) -> Html Never
+renderPage head body =
+    Html.html [ Html.lang "ja" ]
+        [ Html.head [ Ogp.prefix "og: http://ogp.me/ns#" ] head
+        , Html.body [] body
+        ]
