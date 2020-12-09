@@ -79,9 +79,6 @@ gtag('config', 'UA-134256281-1');
     , meta [ name "keywords", content "Elm" ]
     , meta [ name "thumbnail", content imageUrl ]
     , Ogp.twitterCard "summary_large_image"
-    , Ogp.twitterDescription description
-    , Ogp.twitterImage imageUrl
-    , Ogp.twitterTitle siteName
 
     -- <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
     , title [] siteName

@@ -1,21 +1,21 @@
 module Siteelm.Html.Ogp exposing
     ( prefix
     , description, image, locale, siteName, title, type_, url
-    , twitterCard, twitterDescription, twitterSite, twitterImage, twitterTitle
+    , twitterCard
     )
 
 {-|
 
 @docs prefix
 @docs description, image, locale, siteName, title, type_, url
-@docs twitterCard, twitterDescription, twitterSite, twitterImage, twitterTitle
+@docs twitterCard
 
 -}
 
 import Html exposing (Attribute, Html)
 import Html.Attributes exposing (attribute, name)
 import Siteelm.Html exposing (meta)
-import Siteelm.Html.Attributes as Attributes
+import Siteelm.Html.Attributes exposing (content)
 
 
 prefix : String -> Attribute msg
@@ -27,7 +27,7 @@ og : String -> String -> Html msg
 og p c =
     meta
         [ attribute "property" ("og:" ++ p)
-        , Attributes.content c
+        , content c
         ]
 
 
@@ -70,34 +70,6 @@ url str =
 -- TWITTER CARD
 
 
-twitter : String -> String -> Html msg
-twitter n c =
-    meta
-        [ name ("twitter:" ++ n)
-        , Attributes.content c
-        ]
-
-
 twitterCard : String -> Html msg
 twitterCard str =
-    twitter "card" str
-
-
-twitterDescription : String -> Html msg
-twitterDescription str =
-    twitter "description" str
-
-
-twitterImage : String -> Html msg
-twitterImage str =
-    twitter "image" str
-
-
-twitterSite : String -> Html msg
-twitterSite str =
-    twitter "site" str
-
-
-twitterTitle : String -> Html msg
-twitterTitle str =
-    twitter "title" str
+    meta [ name "twitter:card", content str ]
