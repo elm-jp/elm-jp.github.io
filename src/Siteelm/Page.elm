@@ -4,6 +4,7 @@ import Browser
 import Html exposing (Html)
 import Json.Decode exposing (Decoder, decodeString)
 import Siteelm.Html as Html
+import Siteelm.Html.Attributes.Extra as Html
 import Siteelm.Html.Ogp as Ogp
 
 
@@ -59,7 +60,7 @@ renderPage : (a -> String -> List (Html Never)) -> (a -> String -> List (Html Ne
 renderPage head body model =
     case model.preamble of
         Just p ->
-            Html.html []
+            Html.html [ Html.lang "ja" ]
                 [ Html.head [ Ogp.prefix "og: http://ogp.me/ns#" ] <| head p model.body
                 , Html.body [] <| body p model.body
                 ]

@@ -1,10 +1,11 @@
 module Static.Top exposing (main)
 
-import Html exposing (Html, a, div, img, main_, p, section, text)
+import Html exposing (Html, a, div, img, main_, node, p, section, text)
 import Html.Attributes exposing (attribute, class, href, id, name, src, target)
 import Json.Decode as D exposing (Decoder)
-import Siteelm.Html as Html
+import Siteelm.Html exposing (link, meta, title)
 import Siteelm.Html.Attributes as Attributes exposing (charset, content, rel)
+import Siteelm.Html.Attributes.Extra exposing (httpEquiv)
 import Siteelm.Html.Ogp as Ogp
 import Siteelm.Page exposing (Page, page)
 import Static.View as View
@@ -50,9 +51,23 @@ viewHead _ _ =
         imageUrl =
             siteUrl ++ "/images/card.jpg"
     in
-    [ Html.meta [ charset "utf-8" ]
+    [ meta [ charset "UTF-8" ]
+    , meta [ content "IE=edge", httpEquiv "X-UA-Compatible" ]
+    , meta [ name "viewport", content "width=device-width, initial-scale=1" ]
 
-    -- , Html.meta [ name "description", content description ]
+    -- Global site tag (gtag.js) - Google Analytics
+    -- Siteelm.Html.scriptではcharsetやasyncの設定ができないため、直接記述している
+    , node "siteelm-custom" [ Attributes.data "tag" "script", attribute "async" "true", attribute "src" "https://www.googletagmanager.com/gtag/js?id=UA-134256281-1" ] []
+    , node "siteelm-custom"
+        [ Attributes.data "tag" "script" ]
+        [ text """window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-134256281-1');
+""" ]
+
+    -- , meta [ name "description", content description ]
     , Ogp.title siteName
     , Ogp.url siteUrl
     , Ogp.image imageUrl
@@ -61,19 +76,19 @@ viewHead _ _ =
     -- , Ogp.description description
     , Ogp.locale "ja_JP"
     , Ogp.type_ "website"
-    , Html.meta [ name "keywords", content "Elm" ]
-    , Html.meta [ name "thumbnail", content imageUrl ]
+    , meta [ name "keywords", content "Elm" ]
+    , meta [ name "thumbnail", content imageUrl ]
     , Ogp.twitterCard "summary_large_image"
     , Ogp.twitterDescription description
     , Ogp.twitterImage imageUrl
     , Ogp.twitterTitle siteName
 
     -- <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
-    , Html.title [] siteName
-    , Html.link [ rel "stylesheet", href "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" ]
-    , Html.link [ rel "stylesheet", href "/style.css" ]
+    , title [] siteName
+    , link [ rel "stylesheet", href "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" ]
+    , link [ rel "stylesheet", href "/style.css" ]
     , -- Siteelm.Html.scriptではcharsetやasyncの設定ができないため、直接記述している
-      Html.node "siteelm-custom" [ Attributes.data "tag" "script", attribute "async" "true", attribute "src" "https://platform.twitter.com/widgets.js", charset "utf-8" ] []
+      node "siteelm-custom" [ Attributes.data "tag" "script", attribute "async" "true", attribute "src" "https://platform.twitter.com/widgets.js", charset "utf-8" ] []
     ]
 
 
