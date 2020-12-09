@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npx siteelm server -d",
+    "start": "siteelm server -d",
     "build": "siteelm make"
   },
   "devDependencies": {
