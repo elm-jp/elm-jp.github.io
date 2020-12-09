@@ -49,7 +49,7 @@ viewHead _ _ =
             "Sakura-chan is the cutest goat all of the world. Elm-jp is the best Elm community in Japan."
 
         imageUrl =
-            siteUrl ++ "/images/card.jpg"
+            siteUrl ++ "/images/card.png"
     in
     [ meta [ charset "UTF-8" ]
     , meta [ content "IE=edge", httpEquiv "X-UA-Compatible" ]
