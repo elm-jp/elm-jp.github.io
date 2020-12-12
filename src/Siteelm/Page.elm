@@ -12,9 +12,9 @@ import Siteelm.Html.Ogp as Ogp
 page : { head : List (Html Never), body : List (Html Never) } -> Page
 page { head, body } =
     Browser.document
-        { init = \() -> ( (), Cmd.none )
+        { init = always ( (), Cmd.none )
         , update = \_ () -> ( (), Cmd.none )
-        , view = \() -> { title = "", body = [ renderPage head body ] }
+        , view = always { title = "", body = [ renderPage head body ] }
         , subscriptions = always Sub.none
         }
 
