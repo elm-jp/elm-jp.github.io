@@ -3,6 +3,3 @@ node_modules
 
 # Elm Dependency directory
 elm-stuff
-
-# Default directory at "siteelm server"
-dist

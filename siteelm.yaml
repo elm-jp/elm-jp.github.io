@@ -1,5 +1,5 @@
 build:
-  dist_dir: ./dist
+  dist_dir: ./
   contents:
     src_dir: ./src/pages
     index: ./src/pages/index.md
