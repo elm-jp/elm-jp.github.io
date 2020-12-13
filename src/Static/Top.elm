@@ -53,9 +53,8 @@ viewHead =
     , meta [ name "keywords", content "Elm" ]
     , meta [ name "thumbnail", content imageUrl ]
     , Ogp.twitterCard "summary_large_image"
-
-    -- <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
     , title [] siteName
+    , link [ rel "", href "/favicon.ico" ]
     , link [ rel "stylesheet", href "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" ]
     , link [ rel "stylesheet", href "/style.css" ]
     , -- Siteelm.Html.scriptではcharsetやasyncの設定ができないため、直接記述している
