@@ -10,7 +10,7 @@ siteHeader =
         [ h1 [ class "flex text-white mr-6" ]
             [ img [ class "fill-current h-8 w-8 mr-2", src "/images/elm-japan-icon.svg" ] []
             , a [ href "/" ] [ span [ class "font-semibold text-xl" ] [ text "Elm-jp" ] ]
-                ]
+            ]
         , nav [ class "hidden flex-grow sm:flex items-center" ]
             [ div [ class "text-sm flex-grow" ] <|
                 List.map
@@ -21,7 +21,7 @@ siteHeader =
                     [ { label = "Guide（邦訳版）", url = "https://guide.elm-lang.jp" }
                     , { label = "Discord", url = "https://discordapp.com/invite/4j2MxCg" }
                     , { label = "ScrapBox", url = "https://scrapbox.io/elm-jp" }
-            ]
+                    ]
             , div []
                 [ a [ class "inline-block text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white", href "#sakura" ]
                     [ text "さくらちゃん日記" ]
@@ -32,8 +32,5 @@ siteHeader =
 
 siteFooter : Html msg
 siteFooter =
-    footer [ class "footer" ]
-        [ div [ class "has-text-centered" ]
-            [ p [] [ text "© 2019 Elm-jp" ]
-            ]
-        ]
+    footer [ class "text-center bg-blue-500 text-white p-3" ]
+        [ p [] [ text "© 2021 Elm-jp" ] ]

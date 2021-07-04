@@ -103,4 +103,5 @@ viewBody =
                 ]
             ]
         ]
+    , View.siteFooter
     ]
