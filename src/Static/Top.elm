@@ -55,7 +55,7 @@ viewHead =
     , Ogp.twitterCard "summary_large_image"
     , title [] siteName
     , link [ rel "", href "/favicon.ico" ]
-    , link [ rel "stylesheet", href "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" ]
+    , link [ rel "stylesheet", href "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" ]
     , link [ rel "stylesheet", href "/style.css" ]
     , -- Siteelm.Html.scriptではcharsetやasyncの設定ができないため、直接記述している
       node "siteelm-custom" [ Attributes.data "tag" "script", attribute "async" "", attribute "src" "https://platform.twitter.com/widgets.js", charset "utf-8" ] []
