@@ -2,7 +2,7 @@ module Siteelm.Page exposing (Page, page)
 
 import Browser
 import Html exposing (Html, main_, node)
-import Html.Attributes exposing (attribute, href, name)
+import Html.Attributes exposing (attribute, class, href, name)
 import Siteelm.Html as Html exposing (link, meta, script, title)
 import Siteelm.Html.Attributes exposing (charset, content, data, rel)
 import Siteelm.Html.Attributes.Extra exposing (httpEquiv, lang)
@@ -30,9 +30,9 @@ renderPage : List (Html Never) -> List (Html Never) -> Html Never
 renderPage additionalHead body =
     Html.html [ lang "ja" ]
         [ Html.head [ Ogp.prefix "og: http://ogp.me/ns#" ] (commonHead ++ additionalHead)
-        , Html.body []
+        , Html.body [ class "flex flex-col min-h-screen" ]
             [ siteHeader
-            , main_ [] body
+            , main_ [ class "flex-grow" ] body
             , siteFooter
             ]
         ]
