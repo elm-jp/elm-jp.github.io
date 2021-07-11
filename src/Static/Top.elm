@@ -1,9 +1,9 @@
 module Static.Top exposing (main)
 
-import Html exposing (Html, a, div, h1, img, node, p, section, text)
-import Html.Attributes exposing (attribute, class, href, id, src, target)
+import Html exposing (Html, a, div, h1, img, p, section, text)
+import Html.Attributes exposing (class, href, src, target)
 import Siteelm.Html exposing (link, title)
-import Siteelm.Html.Attributes as Attributes exposing (charset, rel)
+import Siteelm.Html.Attributes exposing (rel)
 import Siteelm.Page exposing (Page, page)
 
 
@@ -16,9 +16,7 @@ main =
 -}
 viewHead : List (Html Never)
 viewHead =
-    [ -- Siteelm.Html.scriptではcharsetやasyncの設定ができないため、直接記述している
-      node "siteelm-custom" [ Attributes.data "tag" "script", attribute "async" "", attribute "src" "https://platform.twitter.com/widgets.js", charset "utf-8" ] []
-    ]
+    []
 
 
 {-| Make contents inside the _body_ tag. The parameter "body" is usually something like markdown.
@@ -53,10 +51,4 @@ viewBody =
               , link = { label = "ScrapBox", url = "https://scrapbox.io/elm-jp" }
               }
             ]
-    , section [ id "sakura", class "p-5" ]
-        [ div [ class "moment" ]
-            [ a [ class "twitter-moment", href "https://twitter.com/i/moments/1088056396665352192?ref_src=twsrc%5Etfw" ]
-                [ text "さくらちゃん日記" ]
-            ]
-        ]
     ]

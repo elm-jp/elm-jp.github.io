@@ -23,7 +23,7 @@ siteHeader =
                     , { label = "ScrapBox", url = "https://scrapbox.io/elm-jp" }
                     ]
             , div []
-                [ a [ class "inline-block text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white", href "#sakura" ]
+                [ a [ class "inline-block text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white", href "/sakura-chan/" ]
                     [ text "さくらちゃん日記" ]
                 ]
             ]
