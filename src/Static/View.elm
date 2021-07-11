@@ -11,8 +11,8 @@ siteHeader =
             [ img [ class "fill-current h-8 w-8 mr-2", src "/images/elm-japan-icon.svg" ] []
             , a [ href "/" ] [ span [ class "font-semibold text-xl" ] [ text "Elm-jp" ] ]
             ]
-        , nav [ class "hidden flex-grow sm:flex items-center" ]
-            [ div [ class "text-sm flex-grow" ] <|
+        , nav [ class "flex-grow flex justify-end items-center" ]
+            [ div [ class "hidden sm:block text-sm flex-grow" ] <|
                 List.map
                     (\item ->
                         a [ class "inline-block text-blue-200 hover:text-white mr-4", target "_blank", rel "noopener", href item.url ]
@@ -23,7 +23,7 @@ siteHeader =
                     , { label = "ScrapBox", url = "https://scrapbox.io/elm-jp" }
                     ]
             , div []
-                [ a [ class "inline-block text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white", href "#sakura" ]
+                [ a [ class "block text-sm px-4 py-2 border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white", href "/sakura-chan/" ]
                     [ text "さくらちゃん日記" ]
                 ]
             ]
